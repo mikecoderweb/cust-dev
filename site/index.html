@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Qiziqishni aniqla</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Manrope:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FBF8F1;
+            --ink: #1B2A41;
+            --mut: #5d6b80;
+            --card: #fff;
+            --line: #e4dfd2;
+            --acc: #2F6BFF;
+            --hi: #FFC93C;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme=light]) {
+                --bg: #121a2a;
+                --ink: #f1efe8;
+                --mut: #9aa8bd;
+                --card: #1b2538;
+                --line: #2c3850;
+                --acc: #7da3ff
+            }
+        }
+
+        :root[data-theme=dark] {
+            --bg: #121a2a;
+            --ink: #f1efe8;
+            --mut: #9aa8bd;
+            --card: #1b2538;
+            --line: #2c3850;
+            --acc: #7da3ff
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 17px/1.55 Manrope, system-ui, sans-serif
+        }
+
+        main {
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 28px 20px 56px
+        }
+
+        h1,
+        h2 {
+            font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+            line-height: 1.1;
+            margin: 0 0 12px
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 8vw, 3.2rem);
+            font-weight: 800
+        }
+
+        h2 {
+            font-size: 1.6rem
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--mut)
+        }
+
+        .hl {
+            background: linear-gradient(transparent 58%, var(--hi) 58%)
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+            color: var(--ink)
+        }
+
+        .opt {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: var(--card);
+            border: 2px solid var(--line);
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin-bottom: 10px
+        }
+
+        .opt:hover,
+        .opt:focus-visible {
+            border-color: var(--acc);
+            outline: none
+        }
+
+        .opt b {
+            display: block
+        }
+
+        .opt span {
+            color: var(--mut);
+            font-size: .9rem
+        }
+
+        .bar {
+            height: 8px;
+            background: var(--line);
+            border-radius: 8px;
+            margin-bottom: 28px;
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: var(--acc);
+            transition: width .3s
+        }
+
+        .q {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            min-height: 5.5em
+        }
+
+        .sc {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px
+        }
+
+        .sc button {
+            padding: 16px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: var(--card);
+            border: 2px solid var(--line);
+            border-radius: 12px
+        }
+
+        .sc button:hover,
+        .sc button:focus-visible {
+            background: var(--acc);
+            border-color: var(--acc);
+            color: #fff;
+            outline: none
+        }
+
+        .ends {
+            display: flex;
+            justify-content: space-between;
+            color: var(--mut);
+            font-size: .85rem;
+            margin-top: 8px
+        }
+
+        .res {
+            background: var(--card);
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 14px
+        }
+
+        .res h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px
+        }
+
+        .res small {
+            font: 600 .9rem Manrope;
+            color: var(--mut)
+        }
+
+        .res .m {
+            height: 6px;
+            background: var(--line);
+            border-radius: 6px;
+            margin: 6px 0 14px
+        }
+
+        .res .m i {
+            display: block;
+            height: 100%;
+            background: var(--hi);
+            border-radius: 6px
+        }
+
+        .res p {
+            margin: 0 0 6px;
+            color: var(--ink)
+        }
+
+        .note {
+            font-size: .9rem
+        }
+
+        .go {
+            background: var(--acc);
+            color: #fff;
+            border: 0;
+            border-radius: 12px;
+            padding: 14px 22px;
+            font-weight: 600;
+            margin-top: 8px
+        }
+    </style>
+</head>
+
+<body>
+    <main id="app"></main>
+    <script>
+        const D = { "ages": [{ "label": "5–9 yosh", "sub": "Ota-ona to'ldiradi", "set": "kids", "who": "Bolamga" }, { "label": "10–14 yosh", "sub": "O'zing to'ldirasan", "set": "kids", "who": "Menga" }, { "label": "15–19 yosh", "sub": "O'zi to'ldiradi", "set": "adult", "who": "Menga" }, { "label": "20 yosh va undan katta", "sub": "O'zi to'ldiradi", "set": "adult", "who": "Menga" }], "types": { "R": { "n": "Amaliy", "d": "Qo'li bilan ishlash, narsa yasash va texnikani yaxshi ko'radi.", "s": "texnologiya, chizmachilik, fizika", "p": "muhandis, quruvchi, mexanik, agronom" }, "I": { "n": "Tadqiqotchi", "d": "Savol berib, sababini topishni va muammoni tahlil qilishni yoqtiradi.", "s": "matematika, fizika, kimyo, informatika", "p": "dasturchi, olim, shifokor, ma'lumotlar tahlilchisi" }, "A": { "n": "Ijodkor", "d": "G'oya o'ylab topish, chizish, yozish va o'z uslubini ifodalashni yaxshi ko'radi.", "s": "tasviriy san'at, musiqa, adabiyot", "p": "dizayner, yozuvchi, musiqachi, rejissyor" }, "S": { "n": "Ijtimoiy", "d": "Odamlarga yordam berish, o'rgatish va ular bilan ishlashda o'zini yaxshi his qiladi.", "s": "ona tili, psixologiya, biologiya, tillar", "p": "o'qituvchi, psixolog, shifokor, murabbiy" }, "E": { "n": "Tadbirkor", "d": "Boshqarish, ishontirish va o'z loyihasini boshlashni yaxshi ko'radi.", "s": "iqtisod, huquq, tillar, tarix", "p": "tadbirkor, menejer, marketolog, advokat" }, "C": { "n": "Tartibli", "d": "Reja, tartib, aniq hisob-kitob va qoidalar bilan ishlashni yoqtiradi.", "s": "matematika, iqtisod, informatika", "p": "buxgalter, moliyachi, administrator, tahlilchi" } }, "q": { "kids": { "R": ["narsa yasash, yig'ish yoki qurish yoqadi", "o'yinchoq yoki buyumlarning ichi qanday tuzilganini ko'rish yoqadi", "tashqarida, tabiatda yoki hayvonlar bilan vaqt o'tkazish yoqadi"], "I": ["«Nega?» va «Qanday?» deb ko'p so'rash odat", "jumboq, mantiqiy o'yin va topishmoqlar yoqadi", "tajriba qilib, nima bo'lishini ko'rish yoqadi"], "A": ["rasm chizish, bo'yash yoki loydan narsa yasash yoqadi", "qo'shiq aytish, raqsga tushish yoki musiqa tinglash yoqadi", "o'zi ertak yoki hikoya to'qish yoqadi"], "S": ["boshqa bolalarga yordam berish yoki ularga o'rgatish yoqadi", "do'st orttirish va jamoada o'ynash oson", "kimdir xafa bo'lsa, buni darrov sezadi"], "E": ["o'yinda boshlovchi bo'lish va qoidalarni belgilash yoqadi", "boshqalarni o'z fikriga ishontira oladi", "do'kon-do'kon yoki biror narsa sotish o'yinlari yoqadi"], "C": ["o'yinchoq va daftarlarini tartib bilan terish yoqadi", "sanash, saralash va jadval to'ldirish yoqadi", "qoidaga amal qilish va kun tartibi bo'yicha yashash yoqadi"] }, "adult": { "R": ["narsalarni ta'mirlash, yig'ish yoki qo'lda yasash yoqadi", "asbob-uskuna va texnika bilan ishlash yoqadi", "ochiq havoda yoki jismoniy ish qilish yoqadi"], "I": ["murakkab muammoni chuqur o'rganib, yechim topish yoqadi", "ma'lumot va raqamlarni tahlil qilish qiziq", "yangi narsa o'rganish uchun uzoq vaqt sarflay olaman"], "A": ["g'oya o'ylab topish va uni shaklga solish yoqadi", "rasm, matn, musiqa yoki dizayn bilan o'zimni ifodalayman", "qat'iy qoidalardan ko'ra erkin ijod qilish ma'qul"], "S": ["boshqalarga tushuntirish, o'rgatish yoki maslahat berish yoqadi", "odamlarning muammosini tinglab, yordam berish menga mamnuniyat beradi", "jamoada va odamlar orasida ishlash yoqadi"], "E": ["jamoani boshqarish yoki tashabbus ko'rsatish yoqadi", "odamlarni ishontirish va kelishuvga erishish yoqadi", "o'z loyiham yoki biznesimni boshlashni orzu qilaman"], "C": ["ishni rejalashtirib, bosqichma-bosqich bajarish yoqadi", "hisob-kitob, hujjat va ma'lumotlarni tartibga solish yoqadi", "aniq qoida va yo'riqnoma bo'lgan ishda o'zimni xotirjam his qilaman"] } } }; let age, qs, i, sc; const $ = document.getElementById('app');
+        function home() {
+            $.innerHTML = `<h1>Nimaga <span class="hl">qiziqishingni</span> bil</h1><p>${Object.values(D.q.kids).flat().length + Object.values(D.q.adult).flat().length > 0 ? '18 ta qisqa savol, taxminan 5 daqiqa. Natijada eng mos fanlar va kasblarni ko\'rasan.' : ''}</p><h2>Yoshingni tanla</h2>` + D.ages.map((a, k) => `<button class="opt" data-k="${k}"><b>${a.label}</b><span>${a.sub}</span></button>`).join('');
+            $.querySelectorAll('.opt').forEach(b => b.onclick = () => start(+b.dataset.k))
+        }
+        function start(k) { age = D.ages[k]; qs = Object.entries(D.q[age.set]).flatMap(([t, l]) => l.map(x => [t, x])).sort(() => Math.random() - .5); i = 0; sc = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 }; ask() }
+        function ask() {
+            if (i >= qs.length) return done();
+            $.innerHTML = `<div class="bar"><i style="width:${i / qs.length * 100}%"></i></div><p>${i + 1} / ${qs.length}</p><div class="q">${age.who} ${qs[i][1]}.</div><div class="sc">${[1, 2, 3, 4, 5].map(n => `<button data-n="${n}" aria-label="Baho ${n}">${n}</button>`).join('')}</div><div class="ends"><span>Umuman yoqmaydi</span><span>Juda yoqadi</span></div>`;
+            $.querySelectorAll('.sc button').forEach(b => b.onclick = () => { sc[qs[i][0]] += +b.dataset.n; i++; ask() })
+        }
+        function done() {
+            const top = Object.entries(sc).sort((a, b) => b[1] - a[1]).slice(0, 3);
+            $.innerHTML = `<h1>Sening natijang</h1><p>Eng yuqori 3 yo'nalish:</p>` + top.map(([t, s]) => { const x = D.types[t]; return `<div class="res"><h2>${x.n}<small>${s}/15</small></h2><div class="m"><i style="width:${s / 15 * 100}%"></i></div><p>${x.d}</p><p><b>Fanlar:</b> ${x.s}</p><p><b>Kasblar:</b> ${x.p}</p></div>` }).join('') + `<p class="note">Bu taqdir emas, moyillik ko'rsatkichi. Qaror qabul qilishda boshqa omillarni ham hisobga ol.</p><button class="go" id="r">Qayta topshirish</button>`;
+            document.getElementById('r').onclick = home; window.scrollTo(0, 0)
+        }
+        home();
+    </script>
+</body>
+
+</html>
